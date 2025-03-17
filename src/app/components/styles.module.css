@@ -1,0 +1,31 @@
+@font-face {
+  font-family: "zentry";
+  src: url("/fonts/zentry-regular.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "robert-medium";
+  src: url("/fonts/robert-medium.woff2") format("woff2");
+}
+
+.heroTitle {
+  -webkit-font-smoothing: antialiased;
+  font-family: "zentry", sans-serif;
+  font-size: 10rem;
+  font-weight: 900;
+  letter-spacing: -0.01em;
+  line-height: 0.82;
+  text-transform: uppercase;
+}
+
+.heroParagraph {
+  -webkit-font-smoothing: antialiased;
+  font-family: "robert-medium", sans-serif;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.specialFont b {
+  font-family: "zentry";
+  font-feature-settings: "ss01" on;
+}
