@@ -29,7 +29,7 @@ const MainTitleAnimated = ({
           scrub: true,
           start: "top 80%",
           end: "60% center",
-          markers: true,
+          markers: false,
         },
       });
     });
