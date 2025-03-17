@@ -11,20 +11,25 @@ const HeroSection = () => {
   const All_Content = useRef(null);
 
   useEffect(() => {
-    gsap.set(All_Content.current, {
-      clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)",
+    const ctx = gsap.context(() => {
+      gsap.set(All_Content.current, {
+        clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)",
+      });
+      gsap.to(All_Content.current, {
+        clipPath: "polygon(9% 18%, 88% 17%, 71% 90%, 28% 75%)",
+        ease: "power1.inOut",
+        scrollTrigger: {
+          scrub: true,
+          start: "15% 30%",
+          end: "80% center",
+          markers: false,
+        },
+      });
     });
-    gsap.to(All_Content.current, {
-      clipPath: "polygon(9% 18%, 88% 17%, 71% 90%, 28% 75%)",
-      // rotate: "5deg",
-      ease: "power1.inOut",
-      scrollTrigger: {
-        scrub: true,
-        start: "15% 30%",
-        end: "80% center",
-        markers: false,
-      },
-    });
+
+    return () => {
+      ctx.revert();
+    };
   }, []);
   return (
     <section className="h-dvh w-full overflow-hidden relative bg-blue-50  ">
@@ -38,16 +43,19 @@ const HeroSection = () => {
             className="w-full h-dvh object-cover"
           ></video>
         </div>
-        <div ref={BottonTitle} className="absolute bottom-10 right-10 ">
+        <div
+          ref={BottonTitle}
+          className="absolute bottom-10 max-sm:right-3 right-10 "
+        >
           <h1
-            className={`${styles.heroTitle} ${styles.specialFont} text-white testt`}
+            className={`${styles.heroTitle} ${styles.specialFont}  max-md:!text-[6rem] text-white testt`}
           >
             G<b>a</b>mming
           </h1>
         </div>
-        <div className="absolute top-10 left-10">
+        <div className="absolute max-sm:left-3 top-20 left-10">
           <h1
-            className={`${styles.heroTitle} ${styles.specialFont} mb-2  text-white`}
+            className={`${styles.heroTitle} ${styles.specialFont} max-md:!text-[6rem] mb-2  text-white`}
           >
             redefi<b>ne</b>
           </h1>
@@ -59,9 +67,9 @@ const HeroSection = () => {
           <Button title="Watch trailer" Icon={FaArrowAltCircleRight} />
         </div>
       </div>
-      <div className="absolute bottom-10 right-10">
+      <div className="absolute bottom-10  max-sm:right-3 right-10">
         <h1
-          className={`${styles.heroTitle} ${styles.specialFont} text-blue-200 `}
+          className={`${styles.heroTitle} ${styles.specialFont} max-md:!text-[6rem]  text-blue-200 `}
         >
           G<b>a</b>mming
         </h1>
