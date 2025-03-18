@@ -29,3 +29,8 @@
   font-family: "zentry";
   font-feature-settings: "ss01" on;
 }
+
+
+.about_imgClipPath {
+  /* clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%) */
+}

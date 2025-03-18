@@ -6,6 +6,7 @@ export default function Home() {
     <div className="">
       <HeroSection />
       <WelcomeSection />
+      <div className="test h-dvh relative w-full bg-black"></div>
     </div>
   );
 }

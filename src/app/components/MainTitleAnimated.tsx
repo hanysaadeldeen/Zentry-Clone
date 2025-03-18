@@ -13,6 +13,7 @@ const MainTitleAnimated = ({
 }) => {
   gsap.registerPlugin(ScrollTrigger);
   const wordRefs = useRef<HTMLElement[]>([]);
+  const SmallTitle = useRef<HTMLElement>(null);
   const ContainerRef = useRef(null);
 
   useEffect(() => {
@@ -38,6 +39,27 @@ const MainTitleAnimated = ({
     };
   }, []);
 
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.from(SmallTitle.current, {
+        duration: 1,
+        x: 200,
+        opacity: 0,
+        ease: "power1.inOut",
+        scrollTrigger: {
+          trigger: ContainerRef.current,
+          scrub: true,
+          start: "top 80%",
+          end: "60% center",
+          markers: false,
+        },
+      });
+    });
+    return () => {
+      ctx.revert();
+    };
+  }, []);
+
   const addToRefs = (el: HTMLElement | null) => {
     if (el && !wordRefs.current.includes(el)) {
       wordRefs.current.push(el);
@@ -45,23 +67,32 @@ const MainTitleAnimated = ({
   };
 
   return (
-    <div
-      className={`${styles.heroTitle} ${styles.specialFont} relative  !text-[5rem] text-${color} text-center`}
-      ref={ContainerRef}
-    >
-      {title.split("<br>").map((line, index) => (
-        <div key={index}>
-          {line.split(" ").map((word, i) => (
-            <span
-              ref={addToRefs}
-              key={i}
-              className="inline-block mx-1"
-              dangerouslySetInnerHTML={{ __html: word }}
-            />
-          ))}
-        </div>
-      ))}
-    </div>
+    <>
+      <span
+        ref={SmallTitle}
+        className="block w-fit mx-auto  text-center text-black text-xs font-robert-regular uppercase"
+      >
+        welcome to zentry
+      </span>
+
+      <div
+        className={`${styles.heroTitle} ${styles.specialFont} my-7 relative  !text-[5rem] text-${color} text-center`}
+        ref={ContainerRef}
+      >
+        {title.split("<br>").map((line, index) => (
+          <div key={index}>
+            {line.split(" ").map((word, i) => (
+              <span
+                ref={addToRefs}
+                key={i}
+                className="inline-block mx-1"
+                dangerouslySetInnerHTML={{ __html: word }}
+              />
+            ))}
+          </div>
+        ))}
+      </div>
+    </>
   );
 };
 
